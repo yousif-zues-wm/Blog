@@ -1,0 +1,40 @@
+<div class=" container">
+  <h3>Posts</h3>
+  <table class='table'>
+    <tr>
+      <th>
+        Post Name
+      </th>
+      <th>
+        Author
+      </th>
+      <th>
+        Description
+      </th>
+      <% blog, _.each(blog, function(blog){ %>
+        <tr data-id='' data-model=''>
+          <td>
+          <%= blog.title %>
+          </td>
+          <td>
+          <%= blog.author %>
+          </td>
+          <td>
+          <%= blog.postData.substring(0,  50) %>
+          </td>
+          <td><a class='btn btn-success' href="/blog/view/<%= blog.id %>">Read</a></td>
+          <td style='display:none;'><a class='btn btn-info <%= blog.author %>' href="/user/">Edit</a></td>
+          <td style='display:none;'><a class='btn btn-danger <%= blog.author %>' href="/user/">Delete</a></td>
+        </tr>
+        <%  }) %>
+
+  </table>
+  <script type="text/javascript">
+  <% _.each(blog, function(blog){ %>
+  if (<%= user.name %> == <%= blog.author %>) {
+    document.getElementsByClassName('<%= user.name %>').style.display = 'inline'
+  }
+  <% }) %>
+
+  </script>
+</div>
